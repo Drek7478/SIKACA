@@ -28,8 +28,6 @@ export default function ForgotPassword() {
       const res = await response.json();
       if (res.status === 'success') {
         setSuccess(res.message);
-        // Arahkan ke halaman verifikasi OTP setelah beberapa saat? bisa langsung navigate dengan state
-        // Untuk kejelasan, kita arahkan setelah 2 detik
         setTimeout(() => {
           navigate('/verify-reset-otp', { state: { email } });
         }, 1500);
