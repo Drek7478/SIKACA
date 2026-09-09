@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 07, 2026 at 05:49 AM
+-- Generation Time: Sep 09, 2026 at 09:33 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.24
 
@@ -44,13 +44,26 @@ CREATE TABLE `detail_pesanan` (
 --
 
 INSERT INTO `detail_pesanan` (`id`, `pesanan_id`, `menu_id`, `jumlah`, `catatan`, `suhu`, `gula`, `subtotal`, `created_at`) VALUES
-(3, 'MA-001', 19, 1, NULL, NULL, NULL, '23000.00', '2026-09-05 10:13:57'),
-(4, 'MA-001', 14, 1, NULL, NULL, NULL, '28000.00', '2026-09-05 10:13:57'),
-(5, 'MA-001', 15, 1, NULL, NULL, NULL, '25000.00', '2026-09-05 10:13:57'),
-(6, 'MA-001', 40, 1, NULL, NULL, 'non', '6000.00', '2026-09-05 10:13:57'),
-(7, 'MA-001', 24, 1, NULL, 'dingin', 'regular', '12000.00', '2026-09-05 10:13:57'),
-(8, 'MA-001', 32, 1, NULL, 'dingin', 'regular', '18000.00', '2026-09-05 10:13:57'),
-(9, 'MA-001', 43, 1, NULL, 'panas', 'non', '15000.00', '2026-09-05 10:13:57');
+(10, 'MA-001', 14, 2, NULL, NULL, NULL, '56000.00', '2026-09-07 15:01:56'),
+(11, 'MA-001', 13, 1, NULL, NULL, NULL, '14000.00', '2026-09-07 15:01:56'),
+(12, 'MA-001', 7, 1, NULL, NULL, NULL, '17000.00', '2026-09-07 15:01:56'),
+(13, 'MA-001', 9, 1, NULL, NULL, NULL, '16000.00', '2026-09-07 15:01:56'),
+(14, 'MA-001', 45, 1, NULL, 'dingin', 'regular', '18000.00', '2026-09-07 15:01:56'),
+(15, 'MA-001', 60, 1, NULL, 'dingin', 'regular', '23000.00', '2026-09-07 15:01:56'),
+(16, 'MA-001', 24, 2, NULL, NULL, NULL, '24000.00', '2026-09-07 15:01:56'),
+(17, 'MA-001', 31, 1, NULL, NULL, NULL, '18000.00', '2026-09-07 15:01:56'),
+(18, 'MA-002', 43, 1, NULL, 'panas', 'non', '15000.00', '2026-09-07 16:10:10'),
+(19, 'MA-002', 45, 1, NULL, 'dingin', 'non', '18000.00', '2026-09-07 16:10:10'),
+(20, 'MA-002', 45, 1, NULL, 'panas', 'regular', '18000.00', '2026-09-07 16:10:10'),
+(25, 'MA-003', 47, 1, 'Esnya dikit aja', 'dingin', 'regular', '18000.00', '2026-09-07 16:37:47'),
+(26, 'MA-003', 18, 1, NULL, NULL, NULL, '15000.00', '2026-09-07 16:37:47'),
+(27, 'MA-003', 12, 1, 'Telur mata sapi', NULL, NULL, '14000.00', '2026-09-07 16:37:47'),
+(28, 'MA-004', 45, 2, NULL, 'dingin', 'regular', '36000.00', '2026-09-08 03:14:09'),
+(29, 'MA-004', 45, 1, NULL, 'panas', 'regular', '18000.00', '2026-09-08 03:14:09'),
+(30, 'MA-004', 14, 3, NULL, NULL, NULL, '84000.00', '2026-09-08 03:14:09'),
+(31, 'MA-005', 59, 1, NULL, NULL, 'regular', '22000.00', '2026-09-08 03:18:35'),
+(32, 'MA-005', 43, 1, NULL, 'panas', 'regular', '15000.00', '2026-09-08 03:18:35'),
+(33, 'MA-005', 43, 1, NULL, 'dingin', 'regular', '15000.00', '2026-09-08 03:18:35');
 
 -- --------------------------------------------------------
 
@@ -142,6 +155,32 @@ INSERT INTO `menu` (`id`, `kategori_id`, `nama`, `harga`, `gambar`, `status`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `password_reset_otp`
+--
+
+CREATE TABLE `password_reset_otp` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `otp_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expired_at` datetime NOT NULL,
+  `is_used` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_reset_otp`
+--
+
+INSERT INTO `password_reset_otp` (`id`, `user_id`, `otp_code`, `expired_at`, `is_used`, `created_at`) VALUES
+(2, 1, '810465', '2026-09-07 06:47:22', 0, '2026-09-07 06:42:22'),
+(3, 1, '876677', '2026-09-07 06:49:47', 0, '2026-09-07 06:44:47'),
+(4, 1, '082526', '2026-09-07 14:02:34', 1, '2026-09-07 06:57:34'),
+(5, 1, '823051', '2026-09-07 16:42:21', 0, '2026-09-07 09:37:21'),
+(6, 2, '313665', '2026-09-07 17:04:27', 1, '2026-09-07 09:59:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pesanan`
 --
 
@@ -161,7 +200,11 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `tanggal`, `nama_pembeli`, `tipe_order`, `metode_bayar`, `total`, `kasir_id`, `created_at`) VALUES
-('MA-001', '2026-09-05 17:13:57', 'Habibi', 'dine_in', 'tunai', '127000.00', 2, '2026-09-05 10:13:57');
+('MA-001', '2026-09-07 22:01:56', 'Bahar', 'dine_in', 'qris', '186000.00', 2, '2026-09-07 15:01:56'),
+('MA-002', '2026-09-07 23:10:10', 'Deni', 'dine_in', 'qris', '51000.00', 2, '2026-09-07 16:10:10'),
+('MA-003', '2026-09-07 23:37:47', 'Rendi', 'dine_in', 'tunai', '47000.00', 2, '2026-09-07 16:37:47'),
+('MA-004', '2026-09-08 10:14:09', 'Rusdi', 'dine_in', 'tunai', '138000.00', 2, '2026-09-08 03:14:09'),
+('MA-005', '2026-09-08 10:18:35', 'bowo', 'dine_in', 'tunai', '52000.00', 4, '2026-09-08 03:18:35');
 
 -- --------------------------------------------------------
 
@@ -173,7 +216,13 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `nama` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_2fa_enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `failed_attempts` tinyint UNSIGNED NOT NULL DEFAULT '0',
+  `is_blocked` tinyint(1) NOT NULL DEFAULT '0',
+  `last_failed_attempt_at` datetime DEFAULT NULL,
   `role` enum('admin','kasir') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'kasir',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -183,9 +232,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$.0JoC2ciFpFSFpJZgyhq5O9I6BR/vAmCzsgD59IeoU8U7EGCUW5Ia', 'admin', '2026-09-05 05:59:46', '2026-09-05 07:18:56'),
-(2, 'YUSUF', 'kasir1', '$2y$10$VGeeWqV7DfHZ8Vr2zF6GLeoc8u9vyeXHiiGYHGckG6.zd3pYQ/bSC', 'kasir', '2026-09-05 07:50:32', '2026-09-05 10:18:44');
+INSERT INTO `users` (`id`, `nama`, `username`, `email`, `password`, `two_factor_secret`, `is_2fa_enabled`, `failed_attempts`, `is_blocked`, `last_failed_attempt_at`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin', 'nur23aisyah11@gmail.com', '$2y$10$QxBO7rErDt.qyQ41zDgOfOZdsbXmThnv3NS3obKR7/KR9IEWszKEG', 'EJV3IPRQQU4UJWC4SFMKJNUFZOPRK4RKD65GIF7Y6VFHMBAVA4ZOGFGR6FBUW65PRG4M2MTYZDSBSUDNJZGNN3DE6IKNPCN64PI3M7Q', 1, 0, 0, NULL, 'admin', '2026-09-05 05:59:46', '2026-09-07 10:24:26'),
+(2, 'YUSUF', 'kasir1', 'drek7988@gmail.com', '$2y$10$VGeeWqV7DfHZ8Vr2zF6GLeoc8u9vyeXHiiGYHGckG6.zd3pYQ/bSC', 'ECQJCNHJ36TQ4PU4ROJL6SNVGVV74USV7LO4J76XYXA55MCDWCGWXTFEA2XAQPHRSCN5XAMRUFW2FRCNQLYW43TLZCFZOSX247N56JY', 1, 0, 0, NULL, 'kasir', '2026-09-05 07:50:32', '2026-09-07 14:36:15'),
+(3, 'HAFIZAH', 'kasir2', 'reyhanerza6@gmail.com', '$2y$10$4.NgsWS0hIi.RRB7trD1JusGxU0gxxw/9odc7Eb5AOFCJ0Mu0rgjG', NULL, 0, 0, 0, NULL, 'kasir', '2026-09-07 14:12:08', '2026-09-07 14:31:41'),
+(4, 'kasir3', 'kasir3', 'budi@gmail.com', '$2y$10$LapFhPavdCnDZzynYj0Y6ee3oJfiTWqS.uKrVJejjTvquOtr6Tk5m', 'FIFJ6VNPDQYTKLQ3UQOUO3CTISLBHSA52AIZ32JGVTIVVM6F3GBLOXF427EOM3Z53M3KF5FBAPUHDZ2DOABENS5LHELDLGYCUEES4JI', 1, 3, 1, '2026-09-08 10:50:31', 'kasir', '2026-09-08 03:16:46', '2026-09-08 03:50:31');
 
 -- --------------------------------------------------------
 
@@ -194,11 +245,11 @@ INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`, `created_at`,
 -- (See below for the actual view)
 --
 CREATE TABLE `v_penjualan_bulanan` (
-`periode` varchar(7)
-,`jumlah_transaksi` bigint
-,`total_produk_terjual` decimal(32,0)
+`jumlah_transaksi` bigint
+,`periode` varchar(7)
 ,`rata_rata_per_transaksi` decimal(11,2)
 ,`total_penjualan` decimal(32,2)
+,`total_produk_terjual` decimal(32,0)
 );
 
 -- --------------------------------------------------------
@@ -208,11 +259,11 @@ CREATE TABLE `v_penjualan_bulanan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_penjualan_harian` (
-`tanggal` date
-,`jumlah_transaksi` bigint
-,`total_produk_terjual` decimal(32,0)
+`jumlah_transaksi` bigint
 ,`rata_rata_per_transaksi` decimal(11,2)
+,`tanggal` date
 ,`total_penjualan` decimal(32,2)
+,`total_produk_terjual` decimal(32,0)
 );
 
 -- --------------------------------------------------------
@@ -222,7 +273,7 @@ CREATE TABLE `v_penjualan_harian` (
 --
 DROP TABLE IF EXISTS `v_penjualan_bulanan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_penjualan_bulanan`  AS SELECT date_format(`p`.`tanggal`,'%Y-%m') AS `periode`, count(distinct `p`.`id_pesanan`) AS `jumlah_transaksi`, sum(`dp`.`jumlah`) AS `total_produk_terjual`, round(avg(`p`.`total`),2) AS `rata_rata_per_transaksi`, sum(`p`.`total`) AS `total_penjualan` FROM (`pesanan` `p` join `detail_pesanan` `dp` on((`p`.`id_pesanan` = `dp`.`pesanan_id`))) GROUP BY date_format(`p`.`tanggal`,'%Y-%m')  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_penjualan_bulanan`  AS SELECT date_format(`p`.`tanggal`,'%Y-%m') AS `periode`, (select count(0) from `pesanan` `p2` where (date_format(`p2`.`tanggal`,'%Y-%m') = date_format(`p`.`tanggal`,'%Y-%m'))) AS `jumlah_transaksi`, (select coalesce(sum(`dp`.`jumlah`),0) from `detail_pesanan` `dp` where `dp`.`pesanan_id` in (select `p3`.`id_pesanan` from `pesanan` `p3` where (date_format(`p3`.`tanggal`,'%Y-%m') = date_format(`p`.`tanggal`,'%Y-%m')))) AS `total_produk_terjual`, (select coalesce(round(avg(`p4`.`total`),2),0) from `pesanan` `p4` where (date_format(`p4`.`tanggal`,'%Y-%m') = date_format(`p`.`tanggal`,'%Y-%m'))) AS `rata_rata_per_transaksi`, (select coalesce(sum(`p5`.`total`),0) from `pesanan` `p5` where (date_format(`p5`.`tanggal`,'%Y-%m') = date_format(`p`.`tanggal`,'%Y-%m'))) AS `total_penjualan` FROM `pesanan` AS `p` GROUP BY date_format(`p`.`tanggal`,'%Y-%m')  ;
 
 -- --------------------------------------------------------
 
@@ -231,7 +282,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_penjualan_harian`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_penjualan_harian`  AS SELECT cast(`p`.`tanggal` as date) AS `tanggal`, count(distinct `p`.`id_pesanan`) AS `jumlah_transaksi`, sum(`dp`.`jumlah`) AS `total_produk_terjual`, round(avg(`p`.`total`),2) AS `rata_rata_per_transaksi`, sum(`p`.`total`) AS `total_penjualan` FROM (`pesanan` `p` join `detail_pesanan` `dp` on((`p`.`id_pesanan` = `dp`.`pesanan_id`))) GROUP BY cast(`p`.`tanggal` as date)  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_penjualan_harian`  AS SELECT cast(`p`.`tanggal` as date) AS `tanggal`, (select count(0) from `pesanan` `p2` where (cast(`p2`.`tanggal` as date) = cast(`p`.`tanggal` as date))) AS `jumlah_transaksi`, (select coalesce(sum(`dp`.`jumlah`),0) from `detail_pesanan` `dp` where `dp`.`pesanan_id` in (select `p3`.`id_pesanan` from `pesanan` `p3` where (cast(`p3`.`tanggal` as date) = cast(`p`.`tanggal` as date)))) AS `total_produk_terjual`, (select coalesce(round(avg(`p4`.`total`),2),0) from `pesanan` `p4` where (cast(`p4`.`tanggal` as date) = cast(`p`.`tanggal` as date))) AS `rata_rata_per_transaksi`, (select coalesce(sum(`p5`.`total`),0) from `pesanan` `p5` where (cast(`p5`.`tanggal` as date) = cast(`p`.`tanggal` as date))) AS `total_penjualan` FROM `pesanan` AS `p` GROUP BY cast(`p`.`tanggal` as date)  ;
 
 --
 -- Indexes for dumped tables
@@ -261,6 +312,15 @@ ALTER TABLE `menu`
   ADD KEY `idx_menu_status` (`status`);
 
 --
+-- Indexes for table `password_reset_otp`
+--
+ALTER TABLE `password_reset_otp`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_otp_user` (`user_id`),
+  ADD KEY `idx_otp_code` (`otp_code`),
+  ADD KEY `idx_otp_expired` (`expired_at`);
+
+--
 -- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
@@ -273,7 +333,8 @@ ALTER TABLE `pesanan`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -298,10 +359,16 @@ ALTER TABLE `menu`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
+-- AUTO_INCREMENT for table `password_reset_otp`
+--
+ALTER TABLE `password_reset_otp`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -319,6 +386,12 @@ ALTER TABLE `detail_pesanan`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori_menu` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+--
+-- Constraints for table `password_reset_otp`
+--
+ALTER TABLE `password_reset_otp`
+  ADD CONSTRAINT `password_reset_otp_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pesanan`
