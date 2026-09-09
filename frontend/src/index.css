@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+body {
+  @apply bg-white text-gray-800 font-sans;
+}
+
+/* Scrollbar styling opsional */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d9e2d;
+  border-radius: 3px;
+}

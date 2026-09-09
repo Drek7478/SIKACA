@@ -1,0 +1,7 @@
+{
+    "require": {
+        "endroid/qr-code": "5.0",
+        "phpmailer/phpmailer": "^7.1",
+        "spomky-labs/otphp": "^11.5"
+    }
+}
